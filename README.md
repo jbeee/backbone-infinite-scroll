@@ -1,4 +1,3 @@
-
 Simple Backbone Infinite Scroll
 ========================
 
@@ -36,6 +35,7 @@ This is a demo case of an easy infinite scroll page layout.
         <div class="desc"><%= desc %></div>
     </script>
 </div>
+```
 
 There is needed a JSON api on server side:
 
@@ -50,6 +50,6 @@ There is needed a JSON api on server side:
         }
     ]
 }
-
+```
 (The data content can be as needed - it should reflect the template above)
 
