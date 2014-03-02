@@ -39,7 +39,7 @@ This is a demo case of an easy infinite scroll page layout.
 
 There is needed a JSON api on server side:
 
-```javascript
+```json
 {
     "next": "api/data",
     "items": [
