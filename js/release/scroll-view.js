@@ -26,13 +26,16 @@ var ScrollView = Backbone.View.extend({
             };
 
             //start of scroll event for touch devices
-            document.addEventListener("touchmove", infinityScrollHandler, false);
-            document.addEventListener("scroll", infinityScrollHandler, false);
+
+            if (document.addEventListener) {
+                document.addEventListener("touchmove", infinityScrollHandler, false);
+                document.addEventListener("scroll", infinityScrollHandler, false);
+            }
         }
 
         //on resize the window - check the column count (responsive behavior)
         window.onresize = function(event) {
-            this.fetchColumns();
+            self.fetchColumns();
         };
     },
     events: {
@@ -152,9 +155,10 @@ var ScrollView = Backbone.View.extend({
 
             var html = _.template(templateSrc, itemData); //item html body
 
-            var $item = jQuery('<div/>', {//create an item DIV wrapper
-                class: classesStr,
-                html: html
+            //create an item DIV wrapper
+            var $item = jQuery('<div/>', {
+                "class": classesStr,
+                "html": html
             });
 
             // try to call the onAddItem - return false means don't continue
