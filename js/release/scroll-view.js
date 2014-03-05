@@ -83,8 +83,8 @@ var ScrollView = Backbone.View.extend({
             var columnHeight;
 
             //call handler that allowes progammer to change the column height count (check the demos)
-            if (typeof self.options.onCountLenght !== 'undefined') {
-                columnHeight = self.options.onCountLenght($column);
+            if (typeof self.options.onCountColumnLenght !== 'undefined') {
+                columnHeight = self.options.onCountColumnLenght($column);
             }
 
             if (typeof columnHeight === 'undefined') {
@@ -161,15 +161,27 @@ var ScrollView = Backbone.View.extend({
                 "html": html
             });
 
+            var shortenColumn = self.getShortenColumn();
             // try to call the onAddItem - return false means don't continue
             //
             // returns:
             // 
             // false = don't continue, skip this item node
             // object = here is a new item node, please use it but use also the origin one
-            // -none- = continue and place the origin node as usual            
-            if (typeof self.options.onAddItem === 'undefined' || self.options.onAddItem(self.itemCount, self.getShortenColumn(), $item, items[i]) !== false) {
-                $item.appendTo(self.getShortenColumn());
+            // -none- = continue and place the origin node as usual
+            var callbackResult;
+            if (typeof self.options.onAddItem !== 'undefined') {
+                callbackResult = self.options.onAddItem(self.itemCount, shortenColumn, $item, itemData);
+            }
+            
+            if (callbackResult === false) {
+                //do nothing
+            } else {
+                if (typeof callbackResult === 'object') { //seems we have a new item to insert - an advertisement or something like that
+                    callbackResult.appendTo(shortenColumn);
+                    shortenColumn = self.getShortenColumn();
+                }
+                $item.appendTo(shortenColumn); //anyway the item shouldbe added
             }
 
             if (i < itemsData.length - 1) {

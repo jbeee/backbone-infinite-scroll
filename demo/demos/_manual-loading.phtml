@@ -5,10 +5,8 @@
             columnsSelector: ".column",
             itemTemplateSelector: "#podTemplate",
             itemClasses: "pod",
-            onCountLenght: function($column) {
-//                console.log("Count length:", $column.attr("class"));
-            },
-            dataUrl: "/json"
+            dataUrl: "/fake-json.php",
+            disableAutoscroll: true
         };
 
         var scrollModel = new ScrollModel({options: options});
@@ -16,6 +14,13 @@
 
     })
 </script>
+
+<div class='info'>
+    It's a item list loaded manually. Above the content is a button for fetching more data.
+    <ul class="links">
+        <li><a href='https://github.com/dizzyn/#'>Check the documentation here</a></li>
+    </ul>
+</div>
 
 <div id="infiniteScrollList">
     <div class="column column-first"></div>

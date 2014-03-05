@@ -1,0 +1,41 @@
+<script>
+    $(function() {
+        $(".infinity").summitInfinityScroll({
+            url: "/data"
+        });
+    })
+</script>
+
+<div class="infinity infinity-16-columns">
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+
+    <div class="btn btn-more">Load more</div>
+    <div class="state no-more-state">There are no more items</div>
+    <div class="state load-state">Loading...</div>
+
+    <script type="text/template" class="pod-prototype">
+        <h3><%= title %></h3>
+        <div class="id"><%= title %></div>
+        <div class="desc"><%= desc %></div>
+    </script>
+
+</div>
+

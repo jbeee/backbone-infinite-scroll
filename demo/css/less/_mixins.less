@@ -1,0 +1,84 @@
+
+// Limit lines count of a text element.
+.limited-lines-block(@lines, @height, @line-height-percentage: 100%) {
+    display: block;
+    font-size: (@height / @lines / @line-height-percentage) * 100%;
+    line-height: (@height / @lines);
+    height: @height;
+    overflow: hidden;
+}
+
+
+// set the background opacity with no opaque on content  
+.background-opacity(@c, @alpha) when (iscolor(@c)) {
+    background: hsla(hue(@c), saturation(@c), lightness(@c), @alpha);
+}
+.background-opacity(@c, @alpha) when not (iscolor(@c)) {
+    background: transparent;
+}
+
+
+// background image replacement with not specific size
+.single-background-image-replacement(@image) {
+	display: inline-block;
+	vertical-align: middle;
+	background-image: @image;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+//backgrpund image replacement size specific
+.single-background-image-replacement(@image, @width, @height: @width) {
+	width: @width;
+	height: @height;
+	.single-background-image-replacement(@image);
+}
+
+// disable selections
+.user-select-none() {
+	webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+ 
+// clearfix
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// Border Radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Background sizing
+.background-size(@size) {
+  -webkit-background-size: @size;
+     -moz-background-size: @size;
+       -o-background-size: @size;
+          background-size: @size;
+}

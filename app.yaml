@@ -1,0 +1,28 @@
+application: demoinfinite
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+
+- url: /css
+  static_dir: demo/css
+
+- url: /fonts
+  static_dir: demo/fonts
+
+- url: /demo/favicon.ico
+  script: favicon.ico
+
+- url: /img
+  static_dir: demo/img
+
+- url: /js
+  static_dir: js
+
+- url: /fake-json.php*
+  script: /demo/fake-json.php
+
+- url: /.*
+  script: /demo/index.php
+
