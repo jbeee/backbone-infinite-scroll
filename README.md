@@ -1,5 +1,5 @@
-Simple Backbone Infinite Scroll
-===============================
+Backbone Infinite Scroll
+========================
 
 This is a demo case of an easy infinite scroll page layout.  
 
@@ -7,26 +7,7 @@ This is a demo case of an easy infinite scroll page layout.
 
 ## Simple setup: ##
 
-```html
-<script>
-    $(function() {
-
-        //configuration
-        var options = {
-            columnsSelector: ".column",
-            itemTemplateSelector: "#podTemplate",
-            itemClasses: "pod",
-            dataUrl: "/json"
-        };
-
-        //BackboneJs model and Viewer
-        var scrollModel = new ScrollModel({options: options});
-        new ScrollView({el: $("#infiniteScrollList"), model: scrollModel, options: options});
-
-    })
-</script>
-```
-
+### Step #1 - Insert HTML: ###
 ```html
 <div id="infiniteScrollList">
     <!-- 3 columns that will hold the pods -->
@@ -48,8 +29,31 @@ This is a demo case of an easy infinite scroll page layout.
 
 </div>
 ```
+Don't forget to link the requirements: [jQuery](http://jquery.org), [UnderscoreJs](http://underscorejs.org/), [BackboneJs](http://backbonejs.org/)
 
-There is needed to be a JSON doc on a server :
+
+### Step #2 - Insert JS: ###
+```html
+<script>
+    $(function() {
+
+        //configuration
+        var options = {
+            columnsSelector: ".column",
+            itemTemplateSelector: "#podTemplate",
+            itemClasses: "pod",
+            dataUrl: "/json"
+        };
+
+        //BackboneJs model and Viewer
+        var scrollModel = new ScrollModel({options: options});
+        new ScrollView({el: $("#infiniteScrollList"), model: scrollModel, options: options});
+
+    })
+</script>
+```
+
+### Step #3 - Prepare your JSON datastream on a server-side: ###
 
 ```json
 [
@@ -78,9 +82,34 @@ There is needed to be a JSON doc on a server :
 |**itemClasses**           | A class name (or names) added to each pod div                                     |
 |**disableAutoscroll**     | If this option is set as boolean: *true* the scroll detection is disabled ([demo](http://demoinfinite.appspot.com/manual-loading)} |
 
+## Handlers: ##
 
-## Requirements: ##
+#### onCountColumnLenght ####
+here you can change the encounted column height.
 
- - [jQuery](http://jquery.org)
- - [UnderscoreJs](http://underscorejs.org/)
- - [BackboneJs](http://backbonejs.org/)
+Params:
+
+ - **$column**: the actual column - DOM elementt extended by jQquery 
+
+Returns:
+
+ - **number** - modified column height  (check the [demo](http://demoinfinite.appspot.com/alternative-layout)) 
+ 
+#### onAddItem ####
+called befored a new item is rendered
+
+Params:
+
+ - **count**: number of rendered items before + 1
+ - **$column**: actual column which will be used for this item  - DOM elementt extended by jQquery  
+ - **$item**: the item itself  - DOM elementt extended by jQquery 
+ - **itemData**: the data object for the item
+
+Returns:
+
+ - **FALSE** - when you want to skip this item
+ - or **object** - when you want to add an another content like advertisement or whatever - (check the [demo](http://demoinfinite.appspot.com/alternative-layout)) 
+
+## Supported browsers: ##
+
+IE8-edge, FF, CH, iOS... 
