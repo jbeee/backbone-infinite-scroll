@@ -89,27 +89,26 @@ here you can change the encounted column height.
 
 Params:
 
- - **$column**: the actual column - DOM elementt extended by jQquery 
+ - **$column**: the actual column - *DOM elementt extended by jQuery*
 
 Returns:
 
  - **number** - modified column height  (check the [demo](http://demoinfinite.appspot.com/alternative-layout)) 
  
 #### onAddItem ####
-called befored a new item is rendered
+called before a new item is rendered
 
 Params:
 
  - **count**: number of rendered items before + 1
- - **$column**: actual column which will be used for this item  - DOM elementt extended by jQquery  
+ - **$column**: actual column which will be used for this item  - *DOM elementt extended by jQuery* - you can modify it
  - **$item**: the item itself  - DOM elementt extended by jQquery 
  - **itemData**: the data object for the item
 
 Returns:
 
  - **FALSE** - when you want to skip this item
- - or **object** - when you want to add an another content like advertisement or whatever - (check the [demo](http://demoinfinite.appspot.com/alternative-layout)) 
-
+ 
 ## Supported browsers: ##
 
 IE8-edge, FF, CH, iOS... 
